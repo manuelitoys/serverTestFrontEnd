@@ -1,15 +1,18 @@
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
 
 
 //? Server express
 const app = express();
 
-//? Middleware static
+//CORS
+app.use(cors());
 
+//? Public directory
 app.use(express.static('public'));
 
-//Lectura parseo 
+//Lectura parseo del body
 app.use( express.json() );
 
 //? Routes
