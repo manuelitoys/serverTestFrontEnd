@@ -5,9 +5,10 @@ const { Router } = require('express');
 
 const router = Router();
 
-const { _items } = require('../controllers/items');
+const { _itemDescription } = require('../controllers/itemDescription');
 
-router.post('/', _items);
+router.post('/', _itemDescription);
 
 module.exports = router;
 
+export {}

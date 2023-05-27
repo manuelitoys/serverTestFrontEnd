@@ -17,6 +17,7 @@ app.use( express.json() );
 
 //? Routes
 app.use('/api/items', require('./routes/items'))
+app.use('/api/items/id', require('./routes/itemDescription'))
 
 //? Listening
 app.listen(process.env.PORT, () => {
