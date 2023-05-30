@@ -10,6 +10,7 @@ const _itemsNew: any = []
 
 const items = (req: any, res: any = response) =>{
     
+    console.log(req.body);
     axios.get(_apiMeli + req.body.search)
     .then(({ data }: any) =>{
             
