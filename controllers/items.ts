@@ -10,10 +10,13 @@ const _itemsNew: any = []
 
 const items = (req: any, res: any = response) =>{
     
+    // let _categories = [{ values:[{}] }]
     axios.get(_apiMeli + req.body.search)
     .then(({ data }: any) =>{
-            
+        
             let _items = data.results
+            let _categories = data.available_filters.filter((c: any) => c.id == 'category')
+        
             _itemsNew.splice(0, _itemsNew.length)
             
             res.json({
@@ -21,13 +24,13 @@ const items = (req: any, res: any = response) =>{
                     name: 'Manuel David',
                     lastname: 'Rodriguez Riveros'
                 },
-                items: dataReform(_items)
+                items: dataReform(_items, _categories[0].values) 
             })
         })
 
 }
 
-const dataReform = (_items: any) =>{
+const dataReform = (_items: any, _categories: any) =>{
     
     _items.map((
         { 
@@ -35,7 +38,8 @@ const dataReform = (_items: any) =>{
             currency_id, 
             installments, 
             price, thumbnail, 
-            condition, shipping
+            condition, shipping, 
+            category_id
         } : any
     ) => {
         _itemsInterface = {
@@ -48,7 +52,9 @@ const dataReform = (_items: any) =>{
             },
             picture: thumbnail,
             condition: condition,
-            free_shipping: shipping.free_shipping
+            free_shipping: shipping.free_shipping,
+            categories: _categories,
+            category_id: category_id,
         }    
         _itemsNew.push( _itemsInterface )
     })

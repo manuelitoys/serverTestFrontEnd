@@ -8,5 +8,7 @@ export interface itemsInterface{
     },
     picture?: string,
     condition?: string,
-    free_shipping?: boolean
+    free_shipping?: boolean,
+    categories?: {},
+    category_id?: string
 }
